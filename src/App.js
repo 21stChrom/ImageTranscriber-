@@ -1,6 +1,22 @@
 import React from "react";
+
+import Tesseract from "tesseract.js";
+
 import "./style.css";
 
+import { createWorker } from 'tesseract.js';
+
+const worker = await createWorker({
+  logger: m => console.log(m)
+  });
+
+  (async () => {
+    await worker.loadLanguage('eng');
+      await worker.initialize('eng');
+        const { data: { text } } = await worker.recognize('https://tesseract.projectnaptha.com/img/eng_bw.png');
+          console.log(text);
+            await worker.terminate();
+            })();
 export default function App() {
   return (
     <div>
@@ -56,7 +72,7 @@ export default function App() {
                                                                                                                                                                                                                                                                                                                                                                                                                                        uploader.addEventListener('change', recognize); 
                                                                                                                                                                                                                                                                                                                                                                                                                                               dlBtn.addEventListener('click', downloadPDF); 
                                                                                                                                                                                                                                                                                                                                                                                                                                                    </script> 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      </body> 
+                                                                                                                                                                                                                                                                               i                                                                                                                                                                       </body> 
                                                                                                                                                                                                                                                                                                                                                                                                                                                        </html>
                                                                                                                                                                                                                                                                                                                                                                                                                                                        
     </div>
